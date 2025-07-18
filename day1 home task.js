@@ -1,4 +1,11 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
 var num1 = parseFloat(prompt("Enter the first number:"));
 var num2 = parseFloat(prompt("Enter the second number:"));
@@ -32,3 +39,5 @@ if (isNaN(num1) || isNaN(num2)) {
   console.log(`Remainder (%)     : ${remainder}`);
   console.log("--------------------------------");
 }
+</body>
+</html>
