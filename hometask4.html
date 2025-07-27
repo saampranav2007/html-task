@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    
+</head>
+<body>
+    <center>
+        <h1>Day 4 Tasks</h1>
+
+    </center>
+    
+
+    <h3>1. Reverse Words in a Sentence</h3>
+    <input type="text" id="sentenceInput" placeholder="Enter a sentence">
+    <button onclick="reverseSentence()">Reverse</button>
+    <p id="reversedResult"></p>
+
+    <h3>2. Remove Duplicates from an Array</h3>
+    <input type="text" id="arrayInput" placeholder="Enter numbers (e.g., 1,2,2,3)">
+    <button onclick="removeDuplicates()">Remove Duplicates</button>
+    <p id="uniqueResult"></p>
+
+    <h3>3. Count Vowels in a String</h3>
+    <input type="text" id="vowelInput" placeholder="Enter a string">
+    <button onclick="countVowels()">Count Vowels</button>
+    <p id="vowelCountResult"></p>
+
+    <script>
+        function reverseSentence() {
+            const sentence = document.getElementById("sentenceInput").value;
+            const reversed = sentence.split(" ").reverse().join(" ");
+            document.getElementById("reversedResult").innerText = "Reversed: " + reversed;
+        }
+
+        function removeDuplicates() {
+            const input = document.getElementById("arrayInput").value;
+            const arr = input.split(",").map(Number);
+            const unique = [...new Set(arr)];
+            document.getElementById("uniqueResult").innerText = "Unique: " + unique.join(", ");
+        }
+
+        function countVowels() {
+            const str = document.getElementById("vowelInput").value;
+            const count = (str.match(/[aeiouAEIOU]/g) || []).length;
+            document.getElementById("vowelCountResult").innerText = "Vowel Count: " + count;
+        }
+    </script>
+</body>
+</html>
