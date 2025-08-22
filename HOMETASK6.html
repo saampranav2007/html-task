@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Management</title>
+</head>
+<body>
+    <h1>Contact Management</h1>
+
+    <div id="contact-list"></div>
+
+    <script>
+
+        function Contact(name, phone, email) {
+            this.name = name;
+            this.phone = phone;
+            this.email = email;
+            this.displayInfo = function() {
+                const { name, phone, email } = this;
+                console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
+            };
+        }
+
+        
+        const contacts = [
+            new Contact("Karthic", "123-456-7890", "karthic@example.com"),
+            new Contact("Dhaya", "987-654-3210", "dhaya@example.com")
+        ];
+
+        
+        function printContact({ name, phone, email }) {
+            console.log(`[PRINT] Name: ${name}, Phone: ${phone}, Email: ${email}`);
+        }
+
+        
+        function displayContactsInDOM(contactArray) {
+            const container = document.getElementById("contact-list");
+            container.innerHTML = ""; // Clear previous entries
+
+            contactArray.forEach(({ name, phone, email }) => {
+                const p = document.createElement("p");
+                p.textContent = `Name: ${name}, Phone: ${phone}, Email: ${email}`;
+                container.appendChild(p);
+            });
+        }
+
+        
+        function addContacts(contactArray, ...newContacts) {
+            newContacts.forEach(c => {
+                const [name, phone, email] = c;
+                contactArray.push(new Contact(name, phone, email));
+            });
+        }
+
+        
+        console.log("---- Iterating Contacts ----");
+        contacts.forEach(contact => {
+            contact.displayInfo();
+            printContact(contact);
+            console.log("Dot Notation:", contact.name);
+            console.log("Bracket Notation:", contact["email"]);
+            console.log("------------------------");
+        });
+
+        
+        addContacts(contacts,
+            ["ARJUN", "555-555-5555", "aRJUN@example.com"],
+            ["Vikram", "444-444-4444", "vikram@example.com"]
+        );
+
+        console.log("---- After Adding New Contacts ----");
+        contacts.forEach(contact => contact.displayInfo());
+
+        
+        displayContactsInDOM(contacts);
+
+        
+        console.log("\n---- Method Borrowing ----");
+        const contact1 = new Contact("Prasanna", "000-000-0000", "prasanna@example.com");
+
+        const contact2 = {
+            name: "Saran",
+            phone: "999-999-9999",
+            email: "saran@example.com"
+        };
+
+        console.log("Using call():");
+        contact1.displayInfo.call(contact2);
+
+        console.log("Using apply():");
+        contact1.displayInfo.apply(contact2);
+
+        console.log("Using bind():");
+        const displaySaran = contact1.displayInfo.bind(contact2);
+        displaySaran();
+    </script>
+</body>
+</html>
